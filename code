@@ -5,12 +5,11 @@
         <style type="text/css">
             *{margin:0;padding:0;}
             html,body{height:100%;}
-            /*body{background: url(./Zwpfex_fw658.jpg) no-repeat;height:2597px;width:580px;}*/
-            div{width:100px;height:100px;position:absolute;}
+            div{width:400px;height:100px;position:absolute;left: 50%;margin-left: -200px;}
         </style>
     </head>
-    <body>
-    <img src="./Zwpfex_fw658.jpg" alt="" style="position:absolute;left:0;top:0;z-index:-1;width:100%;"/>
+    <body id="bo">
+    <img id="ih" src="/images/active.png" alt="" style="position:absolute;left:0;top:0;z-index:-1;width:100%;"/>
     <div></div>
     <div></div>
     <div></div>
@@ -18,17 +17,20 @@
     <div></div>
     <div></div>
     <script type="text/javascript">
-        var div = document.getElementsByTagName('div');
-        var w = document.body.scrollWidth,h = document.body.scrollHeight;
-        var getRandomColor = function(){
-          return (function(m,s,c){
-            return (c ? arguments.callee(m,s,c-1) : '#') + s[m.floor(m.random() * 16)]
-          })(Math,'0123456789abcdef',5)
-        }
-        for( var i = 0; i < div.length; i ++){
-            div[i].style.backgroundColor = getRandomColor();
-            div[i].style.top = (h / 100) * i  + '%';
-        }
+    	window.onload = function(){
+			var div = document.getElementsByTagName('div'),carr = [0.0436,0.0953,0.1436,0.2953,0.3953,0.4953];
+		    var ih = document.getElementById('ih').offsetHeight,divh = document.getElementsByTagName('div').offsetHeight;
+		    var getRandomColor = function(){
+		      return (function(m,s,c){
+		        return (c ? arguments.callee(m,s,c-1) : '#') + s[m.floor(m.random() * 16)]
+		      })(Math,'0123456789abcdef',5)
+		    }
+		    for( var i = 0; i < div.length; i ++){
+		        div[i].style.backgroundColor = getRandomColor();
+				//	div[i].style.top = ((ih * 0.0956) * ( i + 1)) - divh/2 + 'px';
+				div[i].style.top = ((ih * carr[i]) * ( i + 1)) - 100 + 'px';  //ih *(bodyHeight / positionHeight) * (this + 1) - clentHeight
+		    }
+		}
     </script>
     </body>
 </html>
